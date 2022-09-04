@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles direcciones</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+	<link rel="stylesheet" th:href="@{/css/sweetalert.css}" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script th:src="@{/js/sweetalert.min.js}"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>	
+    <script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+ 
+
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+<span class="sr-only">Toggle Navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">Cursos App</a>
+            </div>
+            <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a th:href="@{/categorias/listar}">Categorias</a></li>
+
+                    <li><a th:href="@{/direcciones/listar}">Direcciones</a></li>
+                    <li><a th:href="@{/instructores/listar}">instructores</a></li>
+                    <li><a th:href="@{/cursos/listar}">Cursos</a></li>
+                </ul>
+            </div>
+        </div>
+    
+</nav>
+
+<div class="container body-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h2>Detalle direccion</h2>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <form th:action="@{/direcciones/insert}" method="post" th:object=${direccion}>
+                <input type="hidden" th:field="*{id}"/>
+                <div class="col-10 offset-1 mt-4">
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label>ID</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" th:field="*{id}"/>
+                            <span class="text-danger" th:if="${#fields.hasErrors('id')}" th:errors = "*{id}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label>Calle</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" th:field="*{calle}"/>
+                            <span class="text-danger" th:if="${#fields.hasErrors('calle')}" th:errors = "*{calle}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label >Numero</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" th:field="*{numero}"/>
+                            <span class="text-danger" th:if="${#fields.hasErrors('numero')}" th:errors = "*{numero}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label >Colonia</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" th:field="*{colonia}"/>
+                            <span class="text-danger" th:if="${#fields.hasErrors('colonia')}" th:errors = "*{colonia}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label >Ciudad</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" th:field="*{ciudad}"/>
+                            <span class="text-danger" th:if="${#fields.hasErrors('ciudad')}" th:errors = "*{ciudad}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label >Estado</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" th:field="*{estado}"/>
+                            <span class="text-danger" th:if="${#fields.hasErrors('estado')}" th:errors = "*{estado}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label >CP</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" class="form-control" th:field="*{cp}"/>
+                            <span class="text-danger" th:if="${#fields.hasErrors('cp')}" th:errors = "*{cp}"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12">
+                            <div class="row">
+                              
+                                <div class="col-md-6">
+                                    <a th:href="@{/direcciones/listar}" class="btn btn-success form-control">Volver a lista</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
